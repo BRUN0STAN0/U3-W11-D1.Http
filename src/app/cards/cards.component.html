@@ -1,0 +1,16 @@
+A quanti canali ti vuoi iscrivere?<br />
+<input #input type="number" (change)="showCard(+input.value)" />
+<br />
+Quale canale desidere visualizzare?
+<br />
+
+<select #selected (change)="chooseCard(+selected.value)">
+  <option *ngFor="let number of cards" [value]="number.id">
+    Canale {{ number.id }}
+  </option>
+</select>
+
+<div *ngFor="let item of cards">
+  {{ item.id }} {{ item.title }} <br />
+  <img src="{{ item.thumbnailUrl }}" />
+</div>
