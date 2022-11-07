@@ -19,8 +19,6 @@ export class CardsComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCards = this.CardsService.getCards();
-    // .pipe(switchMap((resp: any) => from(resp)))
-    // .subscribe((ele) => console.log(ele));
   }
 
   showCard(quantity: number): void {
@@ -35,12 +33,8 @@ export class CardsComponent implements OnInit {
   }
 
   chooseCard(number: number) {
-    this.initCards
-      .pipe(
-        switchMap((resp: any) => from(resp)),
-        map((ele: any) => ele.id === number)
-      )
-      .subscribe((ele: any) => console.log(ele));
-    console.log(this.choosenCard);
+    this.CardsService.getCardsbyId(number).subscribe(
+      (ele: any) => (this.cards = [ele])
+    );
   }
 }
